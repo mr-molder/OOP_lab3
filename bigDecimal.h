@@ -11,16 +11,39 @@ namespace Lab3 {
 
     class BigDecimal{
     private:
-        static const int SIZE = 50;
-        char digits[SIZE];
+        static const int MIN_SIZE = 1;
+        int length;
+        //char digits[MIN_SIZE];
+        char *digits = nullptr;
         char sign = '+';
         BigDecimal complement() const;
-        static char addDigits(char left, char right, int& carry);
-        BigDecimal& add(const BigDecimal& right); //add numbers in 10's complement
+        //static char addDigits(char left, char right, int& carry);
+        //BigDecimal& add(const BigDecimal& right); //add numbers in 10's complement
+        void extend(int add_size=1);
+        void shrink(int cut_size=1);
+        void delete_zeroes();
+        class Arithmetics{
+        private:
+            char *digits;
+            int length;
+        public:
+            Arithmetics();
+            Arithmetics(const BigDecimal&);
+            Arithmetics& add(Arithmetics& right);
+            void extend(int add_size=1);
+            ~Arithmetics();
+            BigDecimal toNum();
+            static char addDigits(char left, char right, int& carry);
+            Arithmetics one();
+            void addOne();
+        };
     public:
         BigDecimal();
         BigDecimal(long long);
         BigDecimal(const char*);
+
+        BigDecimal(const BigDecimal &);
+        BigDecimal& operator= (const BigDecimal &);
 
         BigDecimal& operator+= (const BigDecimal& right);
         BigDecimal operator- () const;
@@ -35,6 +58,8 @@ namespace Lab3 {
         friend std::istream& operator>> (std::istream& stream, BigDecimal& number);
 
         BigDecimal complement_digits() const;
+
+        ~BigDecimal();
     };
 
 }
