@@ -2,8 +2,8 @@
 #include "bigDecimal.h"
 
 int main() {
-    Lab3::BigDecimal first('123456');
-    Lab3::BigDecimal second('654321');
+    Lab3::BigDecimal first("");
+    Lab3::BigDecimal second("");
 //    second = -second;
 
 //    std::cout << Lab3::BigDecimal() << '\n';
@@ -12,8 +12,9 @@ int main() {
 //    std::cout << Lab3::BigDecimal(-123) << '\n';
 //    std::cout << Lab3::BigDecimal("-123") << '\n';
 
-//    std::cout << "Print first and second digit:" << '\n';
-//    std::cin >> first >> second;
+    std::cout << "Print first and second digit:" << '\n';
+    std::cin >> first >> second;
+    std::cout << first << second << '\n';
     std::cout << "first + second: " << first + second << '\n';
     std::cout << "first - second: " << first - second << '\n';
     std::cout << "first * 10: " << first.timesTen() << '\n';
